@@ -1,0 +1,51 @@
+ const [posts , setPosts] = useState(mytodos)
+const handleCreate = () => {
+
+    const newpost = {
+      id : self.crypto.randomUUID() , 
+      content : content_value , 
+      likes : 0 
+    };
+    setPosts([...posts , newpost]);
+  }
+
+  const handleDelete = (postId) => {
+      const updated = posts.filter(item => item.id !== postId);
+      setPosts(updated);
+  }
+
+  const handleIncrease = (postId) => {
+    
+    const find = posts.map( item => {
+      if(item.id === postId){
+        return {
+          ...item , likes:item.likes+1
+        }
+      }else{
+        return item;
+      }
+    });
+    setPosts(find)
+  }
+
+  const handleDecrease = (postId) => {
+    const find = posts.map( item => {
+      if(item.id === postId){
+        return {
+          ...item , likes:item.likes-1
+        }
+      }else{
+        return item;
+      }
+    });
+    setPosts(find)
+  }
+
+  const handleSort = () => {
+    const newposts = [...posts];
+      const sorted = newposts.sort(
+        (a,b) => a.likes - b.likes
+      );
+      console.log(sorted)
+      setPosts(sorted)
+  }
